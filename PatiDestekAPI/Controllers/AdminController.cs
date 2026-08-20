@@ -42,7 +42,7 @@ namespace PatiDestekAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            bool emailExists = _context.Admins.Any(a => a.Email == admin.Email);
+            bool emailExists = _context.Admins.Any(a => a.Email.ToLower() == admin.Email.ToLower());
 
             if (emailExists)
             {
@@ -71,7 +71,7 @@ namespace PatiDestekAPI.Controllers
         [HttpPost("login")]
         public IActionResult Login(AdminLoginRequest request)
         {
-            var admin = _context.Admins.FirstOrDefault(a => a.Email == request.Email);
+            var admin = _context.Admins.FirstOrDefault(a => a.Email.ToLower() == request.Email.ToLower());
 
             if (admin == null)
             {

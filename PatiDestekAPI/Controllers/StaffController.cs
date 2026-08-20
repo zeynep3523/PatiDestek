@@ -63,7 +63,7 @@ if (string.IsNullOrWhiteSpace(request.FirstName) ||
 }
 
 
-    if (_context.Users.Any(x => x.Email == request.Email))
+    if (_context.Users.Any(x => x.Email.ToLower() == request.Email.ToLower()))
     {
         return BadRequest(new
         {
@@ -186,7 +186,7 @@ public IActionResult UpdateStaff(int id, CreateStaffRequest request)
     }
 
     bool emailExists = _context.Users.Any(x =>
-        x.Email == request.Email &&
+        x.Email.ToLower() == request.Email.ToLower() &&
         x.Id != id);
 
     if (emailExists)

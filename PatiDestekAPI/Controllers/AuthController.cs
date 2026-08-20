@@ -34,7 +34,7 @@ public AuthController(
                 return BadRequest(ModelState);
             }
 
-            bool emailExists = _context.Users.Any(u => u.Email == user.Email);
+            bool emailExists = _context.Users.Any(u => u.Email.ToLower() == user.Email.ToLower());
 
             if (emailExists)
             {
@@ -70,7 +70,7 @@ return Ok(new
         [HttpPost("verify-email")]
 public IActionResult VerifyEmail(VerifyEmailRequest request)
 {
-    var user = _context.Users.FirstOrDefault(u => u.Email == request.Email);
+    var user = _context.Users.FirstOrDefault(u => u.Email.ToLower() == request.Email.ToLower());
 
     if (user == null)
     {
@@ -111,7 +111,7 @@ public IActionResult VerifyEmail(VerifyEmailRequest request)
 [HttpPost("resend-verification-code")]
 public IActionResult ResendVerificationCode(ResendVerificationCodeRequest request)
 {
-    var user = _context.Users.FirstOrDefault(u => u.Email == request.Email);
+    var user = _context.Users.FirstOrDefault(u => u.Email.ToLower() == request.Email.ToLower());
 
     if (user == null)
     {
@@ -153,7 +153,7 @@ public IActionResult ResendVerificationCode(ResendVerificationCodeRequest reques
 [HttpPost("forgot-password")]
 public IActionResult ForgotPassword(ForgotPasswordRequest request)
 {
-    var user = _context.Users.FirstOrDefault(u => u.Email == request.Email);
+    var user = _context.Users.FirstOrDefault(u => u.Email.ToLower() == request.Email.ToLower());
 
     if (user == null)
     {
@@ -186,7 +186,7 @@ public IActionResult ForgotPassword(ForgotPasswordRequest request)
 [HttpPost("reset-password")]
 public IActionResult ResetPassword(ResetPasswordRequest request)
 {
-    var user = _context.Users.FirstOrDefault(u => u.Email == request.Email);
+    var user = _context.Users.FirstOrDefault(u => u.Email.ToLower() == request.Email.ToLower());
 
     if (user == null)
     {
@@ -262,7 +262,7 @@ public IActionResult Refresh(RefreshTokenRequest request)
 [HttpPost("login")]
 public IActionResult Login(LoginRequest request)
 {
-    var user = _context.Users.FirstOrDefault(u => u.Email == request.Email);
+    var user = _context.Users.FirstOrDefault(u => u.Email.ToLower() == request.Email.ToLower());
 
     if (user == null)
     {
@@ -423,7 +423,7 @@ public IActionResult UpdateProfile(UserProfileUpdateDto request)
     }
 
     var emailExists = _context.Users.Any(u =>
-        u.Email == request.Email &&
+        u.Email.ToLower() == request.Email.ToLower() &&
         u.Id != userId);
 
     if (emailExists)
