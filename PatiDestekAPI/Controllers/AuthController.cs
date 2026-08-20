@@ -26,6 +26,21 @@ public AuthController(
     _emailService = emailService;
 }
 
+        [HttpGet("debug-env")]
+        public IActionResult DebugEnv([FromServices] IConfiguration config)
+        {
+            var email = config["SeedSuperAdmin:Email"];
+            var password = config["SeedSuperAdmin:Password"];
+
+            return Ok(new
+            {
+                emailPresent = !string.IsNullOrEmpty(email),
+                emailValue = email,
+                passwordPresent = !string.IsNullOrEmpty(password),
+                passwordLength = password?.Length ?? 0
+            });
+        }
+
         [HttpGet("debug-user")]
         public IActionResult DebugUser(string email)
         {
