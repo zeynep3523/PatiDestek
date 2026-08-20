@@ -279,16 +279,6 @@ useEffect(() => {
                 </div>
             </div>
 
-            <div className="col-lg-4 col-md-6">
-                <div className="feature-box">
-                    <div className="feature-icon">📱</div>
-                    <h4>Mobil Uyumlu</h4>
-                    <p>
-                        Telefon, tablet ve bilgisayarda sorunsuz kullanım.
-                    </p>
-                </div>
-            </div>
-
         </div>
 
     </div>
