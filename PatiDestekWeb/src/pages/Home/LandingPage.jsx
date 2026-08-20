@@ -204,8 +204,8 @@ useEffect(() => {
     className="features-section section-page"
     id="ozellikler"
     style={{
-        minHeight: "calc(100vh - 76px)",
-        padding: "15px 0"
+        minHeight: "auto",
+        padding: "90px 0"
     }}
 >
 
@@ -227,11 +227,11 @@ useEffect(() => {
 
         </div>
 
-        <div className="row g-2">
+        <div className="row g-4 justify-content-center">
 
             <div className="col-lg-4 col-md-6">
                 <div className="feature-box">
-                    <div className="feature-icon">🐾</div>
+                    <div className="feature-icon feature-icon-green">🐾</div>
                     <h4>İhbar Oluştur</h4>
                     <p>
                         Yaralı veya yardıma ihtiyacı olan hayvanları saniyeler içerisinde bildir.
@@ -241,7 +241,7 @@ useEffect(() => {
 
             <div className="col-lg-4 col-md-6">
                 <div className="feature-box">
-                    <div className="feature-icon">📍</div>
+                    <div className="feature-icon feature-icon-blue">📍</div>
                     <h4>Konum Paylaş</h4>
                     <p>
                         Harita üzerinden tam konum göndererek ekiplerin daha hızlı ulaşmasını sağla.
@@ -251,7 +251,7 @@ useEffect(() => {
 
             <div className="col-lg-4 col-md-6">
                 <div className="feature-box">
-                    <div className="feature-icon">🏥</div>
+                    <div className="feature-icon feature-icon-pink">🏥</div>
                     <h4>Veteriner Bul</h4>
                     <p>
                         Sana en yakın veteriner kliniklerini tek tıkla görüntüle.
@@ -261,7 +261,7 @@ useEffect(() => {
 
             <div className="col-lg-4 col-md-6">
                 <div className="feature-box">
-                    <div className="feature-icon">🔔</div>
+                    <div className="feature-icon feature-icon-orange">🔔</div>
                     <h4>Anlık Bildirim</h4>
                     <p>
                         İhbarının durumunu canlı olarak takip et.
@@ -271,7 +271,7 @@ useEffect(() => {
 
             <div className="col-lg-4 col-md-6">
                 <div className="feature-box">
-                    <div className="feature-icon">🏛️</div>
+                    <div className="feature-icon feature-icon-purple">🏛️</div>
                     <h4>Belediye Entegrasyonu</h4>
                     <p>
                         İlgili belediyeler ihbarları sistem üzerinden yönetebilir.
