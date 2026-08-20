@@ -154,6 +154,25 @@ using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     dbContext.Database.Migrate();
+
+    var seedEmail = builder.Configuration["SeedSuperAdmin:Email"];
+    var seedPassword = builder.Configuration["SeedSuperAdmin:Password"];
+
+    if (!string.IsNullOrEmpty(seedEmail) && !string.IsNullOrEmpty(seedPassword)
+        && !dbContext.Users.Any(u => u.Role == "SuperAdmin"))
+    {
+        dbContext.Users.Add(new PatiDestekAPI.Models.User
+        {
+            FirstName = "Süper",
+            LastName = "Admin",
+            Email = seedEmail,
+            Phone = "0000000000",
+            Password = BCrypt.Net.BCrypt.HashPassword(seedPassword),
+            Role = "SuperAdmin",
+            IsEmailVerified = true,
+        });
+        dbContext.SaveChanges();
+    }
 }
 
 // Swagger

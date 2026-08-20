@@ -50,3 +50,7 @@ services:
         value: smtp.gmail.com
       - key: EmailSettings__Port
         value: "587"
+      - key: SeedSuperAdmin__Email
+        sync: false
+      - key: SeedSuperAdmin__Password
+        sync: false
