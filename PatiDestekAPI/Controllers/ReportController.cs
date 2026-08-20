@@ -51,7 +51,7 @@ District = request.District,
 Latitude = request.Latitude,
 Longitude = request.Longitude,
                 UserId = userId,
-                CreatedDate = DateTime.Now,
+                CreatedDate = DateTime.UtcNow,
                 Status = "Bekliyor"
             };
 
@@ -62,7 +62,7 @@ Longitude = request.Longitude,
     ReportId = report.Id,
     Title = "İhbar oluşturuldu.",
     Description = "Vatandaş tarafından yeni ihbar oluşturuldu.",
-    CreatedAt = DateTime.Now
+    CreatedAt = DateTime.UtcNow
 });
 
 _context.SaveChanges();
@@ -263,7 +263,7 @@ var notification = new Notification
     Type = "DeleteReport",
     Title = "İhbar Silindi",
     Message = $"ID: {report.Id} numaralı ihbar silindi.",
-    CreatedAt = DateTime.Now
+    CreatedAt = DateTime.UtcNow
 };
 
 _context.Notifications.Add(notification);
@@ -300,7 +300,7 @@ public IActionResult DeleteAdminReport(int id)
         Type = "DeleteReport",
         Title = "İhbar Silindi",
         Message = $"#{report.Id} numaralı ihbarınız yönetici tarafından silindi.",
-        CreatedAt = DateTime.Now
+        CreatedAt = DateTime.UtcNow
     };
 
     _context.Notifications.Add(notification);
@@ -1256,7 +1256,7 @@ public IActionResult AssignStaff(int id, int staffId)
         ReportId = report.Id,
         Title = "Görevli atandı.",
         Description = $"{staff.FirstName} {staff.LastName} adlı görevliye atandı.",
-        CreatedAt = DateTime.Now
+        CreatedAt = DateTime.UtcNow
     });
 
     var notification = new Notification
@@ -1329,7 +1329,7 @@ public IActionResult UpdateReportStatus(int id, [FromBody] string status)
         ReportId = report.Id,
         Title = "İhbar durumu güncellendi.",
         Description = $"İhbarın durumu \"{status}\" olarak güncellendi.",
-        CreatedAt = DateTime.Now
+        CreatedAt = DateTime.UtcNow
     });
 
     var notification = new Notification
@@ -1375,7 +1375,7 @@ _context.ReportTimelines.Add(new ReportTimeline
     ReportId = report.Id,
     Title = "Belediye notu eklendi.",
     Description = "İhbar için belediye tarafından bir not eklendi.",
-    CreatedAt = DateTime.Now
+    CreatedAt = DateTime.UtcNow
 });
 
 _context.SaveChanges();

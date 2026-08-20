@@ -50,7 +50,7 @@ var verificationCode = new Random().Next(100000, 999999).ToString();
 
 user.IsEmailVerified = false;
 user.EmailVerificationCode = verificationCode;
-user.VerificationCodeExpireDate = DateTime.Now.AddMinutes(10);
+user.VerificationCodeExpireDate = DateTime.UtcNow.AddMinutes(10);
             _context.Users.Add(user);
 _context.SaveChanges();
 
@@ -88,7 +88,7 @@ public IActionResult VerifyEmail(VerifyEmailRequest request)
         });
     }
 
-    if (user.VerificationCodeExpireDate < DateTime.Now)
+    if (user.VerificationCodeExpireDate < DateTime.UtcNow)
     {
         return BadRequest(new
         {
@@ -132,7 +132,7 @@ public IActionResult ResendVerificationCode(ResendVerificationCodeRequest reques
     var verificationCode = new Random().Next(100000, 999999).ToString();
 
     user.EmailVerificationCode = verificationCode;
-    user.VerificationCodeExpireDate = DateTime.Now.AddMinutes(10);
+    user.VerificationCodeExpireDate = DateTime.UtcNow.AddMinutes(10);
 
     _context.SaveChanges();
 
@@ -166,7 +166,7 @@ public IActionResult ForgotPassword(ForgotPasswordRequest request)
     var resetCode = new Random().Next(100000, 999999).ToString();
 
     user.ResetPasswordCode = resetCode;
-    user.ResetPasswordCodeExpireDate = DateTime.Now.AddMinutes(10);
+    user.ResetPasswordCodeExpireDate = DateTime.UtcNow.AddMinutes(10);
 
     _context.SaveChanges();
 
@@ -204,7 +204,7 @@ public IActionResult ResetPassword(ResetPasswordRequest request)
         });
     }
 
-    if (user.ResetPasswordCodeExpireDate < DateTime.Now)
+    if (user.ResetPasswordCodeExpireDate < DateTime.UtcNow)
     {
         return BadRequest(new
         {
@@ -232,7 +232,7 @@ public IActionResult Refresh(RefreshTokenRequest request)
         .FirstOrDefault(r =>
             r.Token == request.RefreshToken &&
             !r.IsRevoked &&
-            r.Expires > DateTime.Now);
+            r.Expires > DateTime.UtcNow);
 
     if (refreshToken == null)
     {
@@ -273,9 +273,9 @@ public IActionResult Login(LoginRequest request)
     }
     if (user.Role == "User" &&
     user.LockoutEnd.HasValue &&
-    user.LockoutEnd > DateTime.Now)
+    user.LockoutEnd > DateTime.UtcNow)
 {
-    var remaining = user.LockoutEnd.Value - DateTime.Now;
+    var remaining = user.LockoutEnd.Value - DateTime.UtcNow;
 
     return BadRequest(new
     {
@@ -295,7 +295,7 @@ public IActionResult Login(LoginRequest request)
 
         if (user.FailedLoginCount >= 5)
 {
-    user.LockoutEnd = DateTime.Now.AddMinutes(15);
+    user.LockoutEnd = DateTime.UtcNow.AddMinutes(15);
     user.FailedLoginCount = 0;
 
     _context.SaveChanges();
@@ -344,7 +344,7 @@ if (user.Role == "User")
     {
         Token = refreshToken,
         UserId = user.Id,
-        Expires = DateTime.Now.AddDays(7),
+        Expires = DateTime.UtcNow.AddDays(7),
         IsRevoked = false
     };
 

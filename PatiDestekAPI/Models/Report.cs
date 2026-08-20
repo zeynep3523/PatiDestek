@@ -36,7 +36,7 @@ public double Latitude { get; set; }
         [Range(-180, 180, ErrorMessage = "Geçerli bir boylam (Longitude) giriniz.")]
         public double Longitude { get; set; }
 
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
 
         [Required(ErrorMessage = "Durum bilgisi zorunludur.")]
         [StringLength(50, ErrorMessage = "Durum en fazla 50 karakter olabilir.")]

@@ -36,8 +36,8 @@ namespace PatiDestekAPI.Services
                 audience: _configuration["Jwt:Audience"],
                 claims: claims,
                 expires: user.Role == "User"
-    ? DateTime.Now.AddHours(1)
-    : DateTime.Now.AddHours(24),
+    ? DateTime.UtcNow.AddHours(1)
+    : DateTime.UtcNow.AddHours(24),
                 signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

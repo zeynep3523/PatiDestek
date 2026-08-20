@@ -71,7 +71,7 @@ namespace PatiDestekAPI.Controllers
                 SenderId = senderId,
                 ReceiverId = request.ReceiverId,
                 Content = request.Content.Trim(),
-                CreatedAt = DateTime.Now,
+                CreatedAt = DateTime.UtcNow,
                 IsRead = false
             };
 

@@ -31,8 +31,7 @@ namespace PatiDestekAPI.Middleware
                 {
                     success = false,
                     message = "Sunucuda beklenmeyen bir hata oluştu.",
-                    detail = ex.Message,
-                    inner = ex.InnerException?.Message
+                    detail = ex.Message
                 };
 
                 await context.Response.WriteAsync(
