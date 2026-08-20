@@ -26,6 +26,25 @@ public AuthController(
     _emailService = emailService;
 }
 
+        [HttpGet("debug-user")]
+        public IActionResult DebugUser(string email)
+        {
+            var matches = _context.Users
+                .Where(u => u.Email.ToLower() == email.ToLower())
+                .Select(u => new
+                {
+                    u.Id,
+                    u.Email,
+                    u.Role,
+                    u.IsEmailVerified,
+                    u.FailedLoginCount,
+                    u.LockoutEnd
+                })
+                .ToList();
+
+            return Ok(matches);
+        }
+
         [HttpPost("register")]
         public IActionResult Register(User user)
         {
