@@ -1,0 +1,457 @@
+body{
+    background:#F8F9FA;
+}
+
+.navbar{
+    padding:18px 0;
+}
+
+.navbar-brand{
+    color:#2E7D32 !important;
+}
+
+.nav-link{
+    font-weight:500;
+    margin:0 10px;
+    transition:.3s;
+}
+
+.nav-link:hover{
+    color:#FF9800 !important;
+}
+
+.btn-warning{
+    background:#FF9800;
+    border:none;
+    color:white;
+}
+
+.btn-warning:hover{
+    background:#F57C00;
+}
+
+.btn-outline-success:hover{
+    color:white;
+}
+.hero-section{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    background:linear-gradient(135deg,#f4fff6 0%,#ffffff 60%,#eefaf0 100%);
+    overflow:hidden;
+    position:relative;
+}
+.hero-badge{
+    display:inline-block;
+    background:#E8F5E9;
+    color:#2E7D32;
+    padding:10px 18px;
+    border-radius:50px;
+    font-weight:600;
+}
+.hero-title{
+    font-size:3.7rem;
+    font-weight:800;
+    line-height:1.2;
+}
+
+.hero-title span{
+    color:#FF9800;
+}
+
+.hero-text{
+    font-size:20px;
+    font-weight:600;
+    color:#6c757d;
+    line-height:1.8;
+}
+
+.hero-btn{
+    background:#FF9800;
+    color:white;
+    padding:15px 35px;
+    border:none;
+    border-radius:50px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.hero-btn:hover{
+    background:#F57C00;
+    color:white;
+    transform:translateY(-3px);
+}
+.hero-image{
+    width:100%;
+    max-width:650px;
+    animation:float 4s ease-in-out infinite;
+}
+@keyframes float{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-15px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+.about-section{
+    background:white;
+}
+
+.section-tag{
+    display:inline-block;
+    background:#FFF3E0;
+    color:#FF9800;
+    padding:8px 18px;
+    border-radius:40px;
+    font-weight:700;
+}
+
+.section-title{
+    font-size:42px;
+    font-weight:800;
+}
+
+.section-text{
+    color:#6c757d;
+    font-size:18px;
+    line-height:1.8;
+}
+
+.about-image{
+    width:90%;
+}
+.features-section{
+    background:#F8F9FA;
+}
+
+.feature-box{
+
+    background:white;
+
+    border-radius:16px;
+
+    padding:20px;
+
+    height:100%;
+
+    text-align:center;
+
+    transition:.35s;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+
+}
+
+.feature-box:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 45px rgba(0,0,0,.12);
+
+}
+
+.feature-icon{
+
+    width:80px;
+
+    height:80px;
+
+    margin:auto;
+
+    margin-bottom:20px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:38px;
+
+    background:#E8F5E9;
+
+}
+.process-section{
+    background:white;
+}
+
+.process-card{
+
+    position:relative;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:40px 25px;
+
+    text-align:center;
+
+    height:100%;
+
+    transition:.35s;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.process-card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.process-number{
+
+    position:absolute;
+
+    top:20px;
+
+    right:20px;
+
+    width:35px;
+
+    height:35px;
+
+    border-radius:50%;
+
+    background:#FF9800;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:bold;
+
+}
+
+.process-icon{
+
+    font-size:55px;
+
+    margin-bottom:20px;
+
+}
+.statistics-section{
+    background:#2E7D32;
+    color:white;
+}
+
+.stat-box{
+    background:rgba(255,255,255,.10);
+    border-radius:20px;
+    padding:35px;
+    text-align:center;
+    transition:.3s;
+}
+
+.stat-box:hover{
+    transform:translateY(-8px);
+    background:rgba(255,255,255,.18);
+}
+
+.stat-box h2{
+    font-size:48px;
+    font-weight:700;
+}
+
+.stat-box p{
+    margin:0;
+    font-size:18px;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+#anasayfa,
+#hakkimizda,
+#nasil-calisir,
+#iletisim {
+    scroll-margin-top: 90px;
+}
+.footer-section{
+    background:#1f2937;
+    color:white;
+}
+
+.footer-section p,
+.footer-section small{
+    color:#d1d5db !important;
+}
+
+.footer-section h4{
+    color:#4ade80;
+}
+
+.footer-section a{
+    color:white;
+    text-decoration:none;
+}
+
+.footer-section a:hover{
+    color:#4ade80;
+}
+@keyframes float{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-15px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+
+}
+.hero-shape{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(60px);
+    opacity:.25;
+    z-index:0;
+}
+
+.hero-shape-1{
+    width:250px;
+    height:250px;
+    background:#4CAF50;
+    top:-60px;
+    left:-60px;
+}
+
+.hero-shape-2{
+    width:320px;
+    height:320px;
+    background:#81C784;
+    bottom:-120px;
+    right:-80px;
+}
+
+.hero-section{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    background:
+        linear-gradient(rgba(255,255,255,.72), rgba(255,255,255,.72)),
+        url("/images/123.png");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    overflow:hidden;
+    position:relative;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+.section-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    scroll-margin-top: 80px;
+}
+.contact-section {
+    background: white;
+}
+
+.contact-section .card {
+    border-radius: 18px;
+}
+
+.contact-section .card-body {
+    padding: 25px;
+}
+.contact-section {
+    background: #F8F9FA;
+}
+
+.contact-section .container {
+    width: 100%;
+}
+
+.contact-section .card {
+    height: 100%;
+    min-height: 320px;
+    border-radius: 20px;
+    border: none;
+}
+
+.contact-section .card-body {
+    padding: 30px;
+}
+.contact-section .card-body p {
+    color: #212529;
+    font-weight: 500;
+}
+
+.contact-section .card-body strong {
+    color: #212529;
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .hero-section,
+    .section-page {
+        min-height: auto;
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .hero-title {
+        font-size: 2.3rem;
+    }
+
+    .hero-badge {
+        font-size: 14px;
+        padding: 8px 14px;
+    }
+
+    .hero-text {
+        font-size: 16px;
+    }
+
+    .hero-btn {
+        padding: 12px 28px;
+        font-size: 15px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .section-text {
+        font-size: 16px;
+    }
+
+    .feature-box,
+    .process-card {
+        padding: 25px 16px;
+    }
+
+    .stat-box h2 {
+        font-size: 34px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.9rem;
+    }
+}

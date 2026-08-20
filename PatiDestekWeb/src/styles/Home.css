@@ -1,0 +1,62 @@
+.hero-section{
+    background: linear-gradient(135deg,#f8fffa,#eafaf0);
+    border-radius:20px;
+    padding:60px;
+}
+
+.stat-card{
+    transition:.3s;
+    border-radius:20px;
+}
+
+.stat-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.feature-card{
+    transition:.3s;
+    border-radius:20px;
+}
+
+.feature-card:hover{
+    transform:scale(1.05);
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+.feature-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 16px;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,.15);
+}
+
+.stat-card {
+    transition: all .3s ease;
+    border-radius:16px;
+}
+
+.stat-card:hover{
+    transform:scale(1.05);
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.hero-section{
+    background:linear-gradient(135deg,#e8fff2,#ffffff);
+    border-radius:0 0 40px 40px;
+}
+
+.hero-section .lead{
+    font-weight:600;
+}
+
+.card i{
+    transition:.3s;
+}
+
+.card:hover i{
+    transform:scale(1.2);
+}

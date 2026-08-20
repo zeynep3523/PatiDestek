@@ -1,0 +1,6 @@
+@PatiDestekAPI_HostAddress = http://localhost:5217
+
+GET {{PatiDestekAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

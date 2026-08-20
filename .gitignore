@@ -1,0 +1,29 @@
+# Visual Studio / VS Code
+.vs/
+.vscode/
+
+# Node
+node_modules/
+dist/
+build/
+
+# .NET
+bin/
+obj/
+
+# User specific
+*.user
+*.suo
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+PatiDestekAPI/appsettings.json
+
+# Logs
+*.log
+
+# OS
+Thumbs.db
+.DS_Store
