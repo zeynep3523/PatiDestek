@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PatiDestekAPI.Data;
 
@@ -11,9 +12,11 @@ using PatiDestekAPI.Data;
 namespace PatiDestekAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260804120424_AddLoginLock")]
+    partial class AddLoginLock
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,40 +51,6 @@ namespace PatiDestekAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Admins");
-                });
-
-            modelBuilder.Entity("PatiDestekAPI.Models.Message", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRead")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ReceiverId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SenderId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ReceiverId");
-
-                    b.HasIndex("SenderId");
-
-                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("PatiDestekAPI.Models.Notification", b =>
@@ -170,12 +139,6 @@ namespace PatiDestekAPI.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("AssignedByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("AssignedStaffId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Category")
                         .HasColumnType("int");
 
@@ -186,11 +149,6 @@ namespace PatiDestekAPI.Migrations
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
-
-                    b.Property<string>("District")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ImageUrl")
                         .HasMaxLength(500)
@@ -226,41 +184,9 @@ namespace PatiDestekAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AssignedByUserId");
-
-                    b.HasIndex("AssignedStaffId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Reports");
-                });
-
-            modelBuilder.Entity("PatiDestekAPI.Models.ReportTimeline", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ReportId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ReportId");
-
-                    b.ToTable("ReportTimelines");
                 });
 
             modelBuilder.Entity("PatiDestekAPI.Models.User", b =>
@@ -289,9 +215,6 @@ namespace PatiDestekAPI.Migrations
 
                     b.Property<bool>("IsEmailVerified")
                         .HasColumnType("bit");
-
-                    b.Property<string>("JobTitle")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -379,25 +302,6 @@ namespace PatiDestekAPI.Migrations
                     b.ToTable("Veterinarians");
                 });
 
-            modelBuilder.Entity("PatiDestekAPI.Models.Message", b =>
-                {
-                    b.HasOne("PatiDestekAPI.Models.User", "Receiver")
-                        .WithMany()
-                        .HasForeignKey("ReceiverId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("PatiDestekAPI.Models.User", "Sender")
-                        .WithMany()
-                        .HasForeignKey("SenderId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Receiver");
-
-                    b.Navigation("Sender");
-                });
-
             modelBuilder.Entity("PatiDestekAPI.Models.Notification", b =>
                 {
                     b.HasOne("PatiDestekAPI.Models.Report", "Report")
@@ -428,36 +332,13 @@ namespace PatiDestekAPI.Migrations
 
             modelBuilder.Entity("PatiDestekAPI.Models.Report", b =>
                 {
-                    b.HasOne("PatiDestekAPI.Models.User", "AssignedByUser")
-                        .WithMany()
-                        .HasForeignKey("AssignedByUserId");
-
-                    b.HasOne("PatiDestekAPI.Models.User", "AssignedStaff")
-                        .WithMany()
-                        .HasForeignKey("AssignedStaffId");
-
                     b.HasOne("PatiDestekAPI.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AssignedByUser");
-
-                    b.Navigation("AssignedStaff");
-
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("PatiDestekAPI.Models.ReportTimeline", b =>
-                {
-                    b.HasOne("PatiDestekAPI.Models.Report", "Report")
-                        .WithMany()
-                        .HasForeignKey("ReportId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Report");
                 });
 #pragma warning restore 612, 618
         }

@@ -45,25 +45,9 @@ builder.Services.AddRateLimiter(options =>
     });
 });
 
-// PostgreSQL
-var pgHost = builder.Configuration["PGHOST"];
-var connectionString = !string.IsNullOrEmpty(pgHost)
-    ? $"Host={pgHost};Port={builder.Configuration["PGPORT"]};" +
-      $"Database={builder.Configuration["PGDATABASE"]};" +
-      $"Username={builder.Configuration["PGUSER"]};" +
-      $"Password={builder.Configuration["PGPASSWORD"]};" +
-      "SSL Mode=Require;Trust Server Certificate=true"
-    : builder.Configuration.GetConnectionString("DefaultConnection");
-
+// SQL Server
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(connectionString));
-
-// Render assigns the listen port via $PORT
-var renderPort = builder.Configuration["PORT"];
-if (!string.IsNullOrEmpty(renderPort))
-{
-    builder.WebHost.UseUrls($"http://+:{renderPort}");
-}
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -149,43 +133,6 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 var app = builder.Build();
-
-using (var scope = app.Services.CreateScope())
-{
-    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    dbContext.Database.Migrate();
-
-    var seedEmail = builder.Configuration["SeedSuperAdmin:Email"];
-    var seedPassword = builder.Configuration["SeedSuperAdmin:Password"];
-
-    if (!string.IsNullOrEmpty(seedEmail) && !string.IsNullOrEmpty(seedPassword))
-    {
-        var existing = dbContext.Users
-            .FirstOrDefault(u => u.Email.ToLower() == seedEmail.ToLower());
-
-        if (existing != null)
-        {
-            existing.Role = "SuperAdmin";
-            existing.Password = BCrypt.Net.BCrypt.HashPassword(seedPassword);
-            existing.IsEmailVerified = true;
-            dbContext.SaveChanges();
-        }
-        else if (!dbContext.Users.Any(u => u.Role == "SuperAdmin"))
-        {
-            dbContext.Users.Add(new PatiDestekAPI.Models.User
-            {
-                FirstName = "Süper",
-                LastName = "Admin",
-                Email = seedEmail,
-                Phone = "0000000000",
-                Password = BCrypt.Net.BCrypt.HashPassword(seedPassword),
-                Role = "SuperAdmin",
-                IsEmailVerified = true,
-            });
-            dbContext.SaveChanges();
-        }
-    }
-}
 
 // Swagger
 if (app.Environment.IsDevelopment())

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PatiDestekAPI.Data;
 
@@ -11,9 +12,11 @@ using PatiDestekAPI.Data;
 namespace PatiDestekAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260813121747_AddMessages")]
+    partial class AddMessages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -170,9 +173,6 @@ namespace PatiDestekAPI.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("AssignedByUserId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("AssignedStaffId")
                         .HasColumnType("int");
 
@@ -225,8 +225,6 @@ namespace PatiDestekAPI.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AssignedByUserId");
 
                     b.HasIndex("AssignedStaffId");
 
@@ -428,10 +426,6 @@ namespace PatiDestekAPI.Migrations
 
             modelBuilder.Entity("PatiDestekAPI.Models.Report", b =>
                 {
-                    b.HasOne("PatiDestekAPI.Models.User", "AssignedByUser")
-                        .WithMany()
-                        .HasForeignKey("AssignedByUserId");
-
                     b.HasOne("PatiDestekAPI.Models.User", "AssignedStaff")
                         .WithMany()
                         .HasForeignKey("AssignedStaffId");
@@ -441,8 +435,6 @@ namespace PatiDestekAPI.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("AssignedByUser");
 
                     b.Navigation("AssignedStaff");
 
