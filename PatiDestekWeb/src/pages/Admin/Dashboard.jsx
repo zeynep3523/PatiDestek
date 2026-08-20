@@ -149,7 +149,6 @@ setStats(response.data);
     <strong>Şu anda kritik öncelikli ihbar bulunmuyor.</strong>
   </div>
 ) : (
-  <div className="table-responsive">
   <table className="table table-hover mb-0">
     <thead>
       <tr>
@@ -191,7 +190,6 @@ setStats(response.data);
   ))}
 </tbody>
   </table>
-  </div>
 )}
 
   </div>
@@ -203,7 +201,6 @@ setStats(response.data);
 <div className="card shadow border-0">
   <div className="card-body">
 
-    <div className="table-responsive">
     <table className="table table-hover mb-0">
       <thead>
         <tr>
@@ -230,7 +227,6 @@ setStats(response.data);
 </tbody>
 
     </table>
-    </div>
 
   </div>
 </div>

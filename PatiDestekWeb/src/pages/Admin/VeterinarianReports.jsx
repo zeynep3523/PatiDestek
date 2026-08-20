@@ -81,7 +81,6 @@ function VeterinarianReports() {
                 </div>
             ) : (
 
-                <div className="table-responsive">
                 <table className="table table-striped table-bordered align-middle">
 
                     <thead className="table-dark">
@@ -185,7 +184,6 @@ function VeterinarianReports() {
                     </tbody>
 
                 </table>
-                </div>
 
             )}
 
