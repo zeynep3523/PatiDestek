@@ -3,7 +3,7 @@ import AdminNotifications from "../pages/Admin/AdminNotifications";
 import Report from "../pages/Report/Report";
 import MainLayout from "../layouts/MainLayout";
 import AdminLayout from "../layouts/AdminLayout";
-import AdminReportDetail from "../pages/Admin/AdminReportdetail";
+import AdminReportDetail from "../pages/Admin/AdminReportDetail";
 import Profile from "../pages/Profile/Profile";
 import Home from "../pages/Home/Home";
 import LandingPage from "../pages/Home/LandingPage";

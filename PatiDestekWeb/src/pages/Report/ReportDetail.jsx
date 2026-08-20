@@ -104,7 +104,9 @@ function ReportDetail() {
         ? "bg-warning"
         : report.status === "İnceleniyor"
         ? "bg-info"
-        : report.status === "Çözüldü"
+        : report.status === "Müdahale Ediliyor"
+        ? "bg-primary"
+        : report.status === "Tamamlandı"
         ? "bg-success"
         : "bg-secondary"
     }`}

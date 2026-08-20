@@ -235,14 +235,17 @@ function Report() {
   <option value="">Mahalle Seçiniz</option>
 
   <option value="Atatürk Mahallesi">Atatürk Mahallesi</option>
+  <option value="Bahçeağıl Mahallesi">Bahçeağıl Mahallesi</option>
   <option value="Bahçelievler Mahallesi">Bahçelievler Mahallesi</option>
   <option value="Cumhuriyet Mahallesi">Cumhuriyet Mahallesi</option>
+  <option value="Fatih Mahallesi">Fatih Mahallesi</option>
   <option value="İnönü Mahallesi">İnönü Mahallesi</option>
   <option value="İsmetpaşa Mahallesi">İsmetpaşa Mahallesi</option>
-  <option value="Karaağaç Mahallesi">Karaağaç Mahallesi</option>
+  <option value="Kazım Karabekir Mahallesi">Kazım Karabekir Mahallesi</option>
   <option value="Mimar Sinan Mahallesi">Mimar Sinan Mahallesi</option>
-  <option value="Pınarça Mahallesi">Pınarça Mahallesi</option>
-  <option value="Yıldızkent Mahallesi">Yıldızkent Mahallesi</option>
+  <option value="Pınarca Mahallesi">Pınarca Mahallesi</option>
+  <option value="Yanıkağıl Mahallesi">Yanıkağıl Mahallesi</option>
+  <option value="Karaağaç Mahallesi">Karaağaç Mahallesi</option>
 
 </select>
 </div>

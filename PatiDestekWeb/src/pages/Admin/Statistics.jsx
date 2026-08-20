@@ -64,14 +64,17 @@ const response = await axios.get(
   }
   const validDistricts = [
   "Atatürk Mahallesi",
+  "Bahçeağıl Mahallesi",
   "Bahçelievler Mahallesi",
   "Cumhuriyet Mahallesi",
+  "Fatih Mahallesi",
   "İnönü Mahallesi",
   "İsmetpaşa Mahallesi",
-  "Karaağaç Mahallesi",
+  "Kazım Karabekir Mahallesi",
   "Mimar Sinan Mahallesi",
-  "Pınarça Mahallesi",
-  "Yıldızkent Mahallesi",
+  "Pınarca Mahallesi",
+  "Yanıkağıl Mahallesi",
+  "Karaağaç Mahallesi",
 ];
 const districtData = validDistricts.map((name) => {
   const district = stats.districts?.find(
