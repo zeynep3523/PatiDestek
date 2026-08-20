@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { API_ORIGIN } from "../../services/api";
 
 function VeterinarianDashboard() {
   const [stats, setStats] = useState({
@@ -24,7 +25,7 @@ function VeterinarianDashboard() {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-          "http://localhost:5217/api/Report/VeterinarianDashboard",
+          `${API_ORIGIN}/api/Report/VeterinarianDashboard`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

@@ -1,6 +1,7 @@
 import axios from "axios";
+import { API_ORIGIN } from "./api";
 
-const API_URL = "http://localhost:5217/api/Report";
+const API_URL = `${API_ORIGIN}/api/Report`;
 
 const getToken = () => {
   return localStorage.getItem("token");

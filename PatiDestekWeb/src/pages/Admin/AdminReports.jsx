@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getStaff } from "../../services/staffService";
-import api from "../../services/api";
+import api, { API_ORIGIN } from "../../services/api";
 import { toast } from "react-toastify";
 
 function AdminReports() {
@@ -20,8 +20,8 @@ function AdminReports() {
 
 const endpoint =
     user?.role === "Municipality"
-        ? "http://localhost:5217/api/Report/MyAssignedReports"
-        : "http://localhost:5217/api/Report/All";
+        ? `${API_ORIGIN}/api/Report/MyAssignedReports`
+        : `${API_ORIGIN}/api/Report/All`;
 
 const response = await axios.get(endpoint, 
                 {

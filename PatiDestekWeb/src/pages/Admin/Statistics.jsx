@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "axios";   
+import axios from "axios";
+import { API_ORIGIN } from "../../services/api";
 
 import {
   Chart as ChartJS,
@@ -34,8 +35,8 @@ function Statistics() {
 
 const endpoint =
   user?.role === "Municipality"
-    ? "http://localhost:5217/api/Report/MunicipalityStatistics"
-    : "http://localhost:5217/api/Report/AdminStatistics";
+    ? `${API_ORIGIN}/api/Report/MunicipalityStatistics`
+    : `${API_ORIGIN}/api/Report/AdminStatistics`;
 
 const response = await axios.get(
   `${endpoint}?period=${period}`,

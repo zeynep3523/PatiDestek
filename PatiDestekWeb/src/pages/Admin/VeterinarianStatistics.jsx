@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { API_ORIGIN } from "../../services/api";
 
 import {
   Chart as ChartJS,
@@ -32,7 +33,7 @@ function VeterinarianStatistics() {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-          `http://localhost:5217/api/Report/VeterinarianStatistics?period=${period}`,
+          `${API_ORIGIN}/api/Report/VeterinarianStatistics?period=${period}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

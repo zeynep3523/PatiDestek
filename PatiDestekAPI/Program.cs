@@ -26,7 +26,9 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReact", policy =>
     {
-        policy.WithOrigins("http://localhost:5173")
+        policy.SetIsOriginAllowed(origin =>
+                origin == "http://localhost:5173" ||
+                origin.EndsWith(".vercel.app", StringComparison.OrdinalIgnoreCase))
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -43,9 +45,25 @@ builder.Services.AddRateLimiter(options =>
     });
 });
 
-// SQL Server
+// PostgreSQL
+var pgHost = builder.Configuration["PGHOST"];
+var connectionString = !string.IsNullOrEmpty(pgHost)
+    ? $"Host={pgHost};Port={builder.Configuration["PGPORT"]};" +
+      $"Database={builder.Configuration["PGDATABASE"]};" +
+      $"Username={builder.Configuration["PGUSER"]};" +
+      $"Password={builder.Configuration["PGPASSWORD"]};" +
+      "SSL Mode=Require;Trust Server Certificate=true"
+    : builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(connectionString));
+
+// Render assigns the listen port via $PORT
+var renderPort = builder.Configuration["PORT"];
+if (!string.IsNullOrEmpty(renderPort))
+{
+    builder.WebHost.UseUrls($"http://+:{renderPort}");
+}
 
 // JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -131,6 +149,12 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    dbContext.Database.Migrate();
+}
 
 // Swagger
 if (app.Environment.IsDevelopment())

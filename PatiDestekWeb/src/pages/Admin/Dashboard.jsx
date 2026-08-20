@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { API_ORIGIN } from "../../services/api";
 
 function Dashboard() {
   const [stats, setStats] = useState({
@@ -30,8 +31,8 @@ const user = JSON.parse(localStorage.getItem("user"));
 
 const endpoint =
   user?.role === "Municipality"
-    ? "http://localhost:5217/api/Report/MunicipalityDashboard"
-    : "http://localhost:5217/api/Report/AdminDashboard";
+    ? `${API_ORIGIN}/api/Report/MunicipalityDashboard`
+    : `${API_ORIGIN}/api/Report/AdminDashboard`;
 
 const response = await axios.get(
   endpoint,

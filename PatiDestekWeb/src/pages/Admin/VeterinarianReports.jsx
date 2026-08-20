@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { API_ORIGIN } from "../../services/api";
 
 function VeterinarianReports() {
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ function VeterinarianReports() {
             const token = localStorage.getItem("token");
 
             const response = await axios.get(
-                "http://localhost:5217/api/Report/VeterinarianReports",
+                `${API_ORIGIN}/api/Report/VeterinarianReports`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
