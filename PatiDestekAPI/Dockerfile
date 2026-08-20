@@ -12,6 +12,7 @@ WORKDIR /app
 COPY --from=build /app ./
 
 ENV ASPNETCORE_ENVIRONMENT=Production
+ENV DOTNET_hostBuilder:reloadConfigOnChange=false
 EXPOSE 10000
 
 ENTRYPOINT ["dotnet", "PatiDestekAPI.dll"]
