@@ -158,20 +158,32 @@ using (var scope = app.Services.CreateScope())
     var seedEmail = builder.Configuration["SeedSuperAdmin:Email"];
     var seedPassword = builder.Configuration["SeedSuperAdmin:Password"];
 
-    if (!string.IsNullOrEmpty(seedEmail) && !string.IsNullOrEmpty(seedPassword)
-        && !dbContext.Users.Any(u => u.Role == "SuperAdmin"))
+    if (!string.IsNullOrEmpty(seedEmail) && !string.IsNullOrEmpty(seedPassword))
     {
-        dbContext.Users.Add(new PatiDestekAPI.Models.User
+        var existing = dbContext.Users
+            .FirstOrDefault(u => u.Email.ToLower() == seedEmail.ToLower());
+
+        if (existing != null)
         {
-            FirstName = "Süper",
-            LastName = "Admin",
-            Email = seedEmail,
-            Phone = "0000000000",
-            Password = BCrypt.Net.BCrypt.HashPassword(seedPassword),
-            Role = "SuperAdmin",
-            IsEmailVerified = true,
-        });
-        dbContext.SaveChanges();
+            existing.Role = "SuperAdmin";
+            existing.Password = BCrypt.Net.BCrypt.HashPassword(seedPassword);
+            existing.IsEmailVerified = true;
+            dbContext.SaveChanges();
+        }
+        else if (!dbContext.Users.Any(u => u.Role == "SuperAdmin"))
+        {
+            dbContext.Users.Add(new PatiDestekAPI.Models.User
+            {
+                FirstName = "Süper",
+                LastName = "Admin",
+                Email = seedEmail,
+                Phone = "0000000000",
+                Password = BCrypt.Net.BCrypt.HashPassword(seedPassword),
+                Role = "SuperAdmin",
+                IsEmailVerified = true,
+            });
+            dbContext.SaveChanges();
+        }
     }
 }
 
