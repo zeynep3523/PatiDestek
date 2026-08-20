@@ -153,6 +153,7 @@ function VeterinarianDashboard() {
               </strong>
             </div>
           ) : (
+            <div className="table-responsive">
             <table className="table table-hover mb-0">
 
               <thead>
@@ -192,6 +193,7 @@ function VeterinarianDashboard() {
               </tbody>
 
             </table>
+            </div>
           )}
 
         </div>
@@ -211,6 +213,7 @@ function VeterinarianDashboard() {
               Henüz size atanmış bir ihbar bulunmuyor.
             </p>
           ) : (
+            <div className="table-responsive">
             <table className="table table-hover mb-0">
 
               <thead>
@@ -246,6 +249,7 @@ function VeterinarianDashboard() {
               </tbody>
 
             </table>
+            </div>
           )}
 
         </div>

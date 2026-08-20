@@ -158,6 +158,7 @@ const response = await axios.get(endpoint,
 
     </div>
 
+            <div className="table-responsive">
             <table className="table table-striped table-bordered align-middle">
 
                 <thead className="table-dark">
@@ -381,6 +382,7 @@ const response = await axios.get(endpoint,
                 </tbody>
 
             </table>
+            </div>
 
         </div>
     );

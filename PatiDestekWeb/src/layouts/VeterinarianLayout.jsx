@@ -1,5 +1,7 @@
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Offcanvas } from "bootstrap";
+import "../styles/PanelLayout.css";
 
 function VeterinarianLayout() {
     const navigate = useNavigate();
@@ -8,6 +10,13 @@ function VeterinarianLayout() {
     const [showLogoutModal, setShowLogoutModal] = useState(false);
 
     const showBackButton = location.pathname !== "/veterinarian";
+
+    const closeSidebar = () => {
+        const el = document.getElementById("vetSidebar");
+        if (el) {
+            Offcanvas.getInstance(el)?.hide();
+        }
+    };
 
     const handleLogout = () => {
         localStorage.removeItem("token");
@@ -19,13 +28,29 @@ function VeterinarianLayout() {
     };
 
     return (
-        <div className="d-flex" style={{ minHeight: "100vh" }}>
+        <div style={{ minHeight: "100vh" }}>
+
+            {/* Mobil Üst Bar */}
+            <nav className="navbar bg-dark d-lg-none px-3 sticky-top">
+                <button
+                    className="btn btn-outline-light"
+                    type="button"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#vetSidebar"
+                >
+                    <i className="bi bi-list"></i> Menü
+                </button>
+                <span className="navbar-brand text-white ms-2 mb-0">🩺 PatiDestek</span>
+            </nav>
+
+            <div className="d-flex">
 
             {/* Sol Menü */}
             <div
-                className="bg-dark text-white p-3 d-flex flex-column"
+                className="panel-sidebar offcanvas-lg offcanvas-start bg-dark text-white p-3 d-flex flex-column"
+                tabIndex="-1"
+                id="vetSidebar"
                 style={{
-                    width: "260px",
                     position: "fixed",
                     top: 0,
                     left: 0,
@@ -33,13 +58,23 @@ function VeterinarianLayout() {
                     overflowY: "auto"
                 }}
             >
+                <div className="d-flex align-items-center justify-content-between d-lg-none mb-3">
+                    <h5 className="mb-0">🩺 PatiDestek</h5>
+                    <button
+                        type="button"
+                        className="btn-close btn-close-white"
+                        data-bs-dismiss="offcanvas"
+                        data-bs-target="#vetSidebar"
+                    ></button>
+                </div>
 
-                <h3 className="mb-4">🩺 PatiDestek</h3>
+                <h3 className="mb-4 d-none d-lg-block">🩺 PatiDestek</h3>
 
                 <div className="nav flex-column">
                     <NavLink
     to="/veterinarian"
     className="nav-link text-white"
+    onClick={closeSidebar}
 >
     🏠 Kontrol Paneli
 </NavLink>
@@ -47,6 +82,7 @@ function VeterinarianLayout() {
 <NavLink
     to="/veterinarian/statistics"
     className="nav-link text-white"
+    onClick={closeSidebar}
 >
     📊 İstatistikler
 </NavLink>
@@ -54,6 +90,7 @@ function VeterinarianLayout() {
 <NavLink
     to="/veterinarian/reports"
     className="nav-link text-white"
+    onClick={closeSidebar}
 >
     🐾 İhbar Yönetimi
 </NavLink>
@@ -61,6 +98,7 @@ function VeterinarianLayout() {
 <NavLink
     to="/veterinarian/notifications"
     className="nav-link text-white"
+    onClick={closeSidebar}
 >
     🔔 Bildirimler
 </NavLink>
@@ -68,6 +106,7 @@ function VeterinarianLayout() {
 <NavLink
     to="/veterinarian/messages"
     className="nav-link text-white"
+    onClick={closeSidebar}
 >
     💬 İletişim
 </NavLink>
@@ -75,6 +114,7 @@ function VeterinarianLayout() {
 <NavLink
     to="/veterinarian/settings"
     className="nav-link text-white"
+    onClick={closeSidebar}
 >
     ⚙️ Ayarlar
 </NavLink>
@@ -98,10 +138,7 @@ function VeterinarianLayout() {
             </div>
 
             {/* Sağ İçerik */}
-            <div
-                className="flex-grow-1 p-4 bg-light"
-                style={{ marginLeft: "260px" }}
-            >
+            <div className="panel-content flex-grow-1 p-4 bg-light">
 
                 {showBackButton && (
                     <button
@@ -115,7 +152,8 @@ function VeterinarianLayout() {
                 <Outlet />
 
             </div>
-            
+
+            </div>
 
             {/* Çıkış Modalı */}
             {showLogoutModal && (
